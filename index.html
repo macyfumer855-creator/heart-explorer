@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Heart Explorer</title>
+
+<style>
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  background: #f7f7f7;
+  color: #222;
+}
+
+header {
+  background: #8b1e3f;
+  color: white;
+  text-align: center;
+  padding: 35px 20px;
+}
+
+header h1 {
+  margin: 0 0 10px;
+  font-size: 38px;
+}
+
+header p {
+  margin: 0;
+  font-size: 17px;
+}
+
+.container {
+  max-width: 950px;
+  margin: auto;
+  padding: 25px 18px;
+}
+
+.card {
+  background: white;
+  border-radius: 16px;
+  padding: 25px;
+  margin: 25px 0;
+  box-shadow: 0 3px 12px rgba(0,0,0,0.1);
+}
+
+.heart {
+  text-align: center;
+  font-size: 110px;
+  margin: 10px;
+}
+
+h2 {
+  text-align: center;
+}
+
+.category {
+  margin-top: 30px;
+}
+
+.category h3 {
+  margin-bottom: 12px;
+}
+
+.buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+}
+
+button {
+  border: none;
+  padding: 12px 16px;
+  border-radius: 10px;
+  background: #eee;
+  cursor: pointer;
+  font-size: 15px;
+}
+
+button:hover {
+  background: #ddd;
+  transform: translateY(-2px);
+}
+
+.info {
+  background: #fafafa;
+  border-left: 5px solid #8b1e3f;
+  padding: 20px;
+  margin-top: 25px;
+  border-radius: 8px;
+  min-height: 80px;
+  line-height: 1.6;
+}
+
+.flow {
+  text-align: center;
+  line-height: 2;
+  font-size: 18px;
+}
+
+.flow span {
+  font-weight: bold;
+}
+
+.quiz-question {
+  font-size: 20px;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.quiz-options {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-width: 600px;
+  margin: auto;
+}
+
+.quiz-options button {
+  background: #f0f0f0;
+}
+
+#feedback {
+  text-align: center;
+  font-weight: bold;
+  margin-top: 18px;
+  min-height: 25px;
+}
+
+#score {
+  text-align: center;
+  margin-top: 15px;
+}
+
+footer {
+  text-align: center;
+  padding: 25px;
+  color: #666;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <h1>🫀 Heart Explorer</h1>
+  <p>Explore the structures, blood vessels and functions of the human heart.</p>
+</header>
+
+<div class="container">
+
+  <div class="card">
+    <div class="heart">❤️</div>
+
+    <p style="text-align:center;">
+      The human heart is a muscular organ that pumps blood throughout
+      the body. Click a structure below to learn what it does.
+    </p>
+  </div>
+
+
+  <div class="card">
+
+    <h2>Explore the Heart</h2>
+
+    <div class="category">
+      <h3>Heart Chambers</h3>
+
+      <div class="buttons">
+        <button onclick="showInfo('Right Atrium')">Right Atrium</button>
+        <button onclick="showInfo('Right Ventricle')">Right Ventricle</button>
+        <button onclick="showInfo('Left Atrium')">Left Atrium</button>
+        <button onclick="showInfo('Left Ventricle')">Left Ventricle</button>
+      </div>
+    </div>
+
+
+    <div class="category">
+      <h3>Major Blood Vessels</h3>
+
+      <div class="buttons">
+        <button onclick="showInfo('Aorta')">Aorta</button>
+        <button onclick="showInfo('Superior Vena Cava')">Superior Vena Cava</button>
+        <button onclick="showInfo('Inferior Vena Cava')">Inferior Vena Cava</button>
+        <button onclick="showInfo('Pulmonary Artery')">Pulmonary Artery</button>
+        <button onclick="showInfo('Pulmonary Veins')">Pulmonary Veins</button>
+      </div>
+    </div>
+
+
+    <div class="category">
+      <h3>Heart Valves</h3>
+
+      <div class="buttons">
+        <button onclick="showInfo('Tricuspid Valve')">Tricuspid Valve</button>
+        <button onclick="showInfo('Pulmonary Valve')">Pulmonary Valve</button>
+        <button onclick="showInfo('Mitral Valve')">Mitral Valve</button>
+        <button onclick="showInfo('Aortic Valve')">Aortic Valve</button>
+      </div>
+    </div>
+
+
+    <div class="category">
+      <h3>Other Important Structures</h3>
+
+      <div class="buttons">
+        <button onclick="showInfo('Septum')">Septum</button>
+        <button onclick="showInfo('Coronary Arteries')">Coronary Arteries</button>
+        <button onclick="showInfo('Myocardium')">Myocardium</button>
+        <button onclick="showInfo('Pericardium')">Pericardium</button>
+        <button onclick="showInfo('Chordae Tendineae')">Chordae Tendineae</button>
+        <button onclick="showInfo('Papillary Muscles')">Papillary Muscles</button>
+      </div>
+    </div>
+
+
+    <div id="info" class="info">
+      <h3>Choose a structure</h3>
+      <p>Click one of the buttons above to learn more.</p>
+    </div>
+
+  </div>
+
+
+  <div class="card">
+
+    <h2>🩸 How Blood Travels Through the Heart</h2>
+
+    <div class="flow">
+
+      <span>Body</span>
+      ↓
+      <br>
+
+      <span>Superior & Inferior Vena Cava</span>
+      ↓
+      <br>
+
+      <span>Right Atrium</span>
+      ↓
+      <br>
+
+      <span>Tricuspid Valve</span>
+      ↓
+      <br>
+
+      <span>Right Ventricle</span>
+      ↓
+      <br>
+
+      <span>Pulmonary Valve</span>
+      ↓
+      <br>
+
+      <span>Pulmonary Artery</span>
+      ↓
+      <br>
+
+      <span>Lungs</span>
+      ↓
+      <br>
+
+      <span>Pulmonary Veins</span>
+      ↓
+      <br>
+
+      <span>Left Atrium</span>
+      ↓
+      <br>
+
+      <span>Mitral Valve</span>
+      ↓
+      <br>
+
+      <span>Left Ventricle</span>
+      ↓
+      <br>
+
+      <span>Aortic Valve</span>
+      ↓
+      <br>
+
+      <span>Aorta</span>
+      ↓
+      <br>
+
+      <span>Body</span>
+
+    </div>
+
+  </div>
+
+
+  <div class="card">
+
+    <h2>🧠 Heart Knowledge Quiz</h2>
+
+    <div id="quiz-question" class="quiz-question"></div>
+
+    <div id="quiz-options" class="quiz-options"></div>
+
+    <div id="feedback"></div>
+
+    <div id="score"></div>
+
+  </div>
+
+</div>
+
+
+<footer>
+  <p>Heart Explorer — An educational project about human heart anatomy.</p>
+</footer>
+
+
+<script>
+
+const information = {
+
+  "Right Atrium":
+  "The right atrium receives oxygen-poor blood returning from the body through the superior and inferior vena cava.",
+
+  "Right Ventricle":
+  "The right ventricle pumps oxygen-poor blood toward the lungs through the pulmonary artery.",
+
+  "Left Atrium":
+  "The left atrium receives oxygen-rich blood from the lungs through the pulmonary veins.",
+
+  "Left Ventricle":
+  "The left ventricle pumps oxygen-rich blood to the rest of the body through the aorta.",
+
+  "Aorta":
+  "The aorta is the largest artery in the body. It carries oxygen-rich blood from the left ventricle to the body.",
+
+  "Superior Vena Cava":
+  "The superior vena cava carries oxygen-poor blood from the upper body to the right atrium.",
+
+  "Inferior Vena Cava":
+  "The inferior vena cava carries oxygen-poor blood from the lower body to the right atrium.",
+
+  "Pulmonary Artery":
+  "The pulmonary artery carries oxygen-poor blood from the right ventricle to the lungs.",
+
+  "Pulmonary Veins":
+  "The pulmonary veins carry oxygen-rich blood from the lungs to the left atrium.",
+
+  "Tricuspid Valve":
+  "The tricuspid valve is located between the right atrium and right ventricle. It helps prevent blood from flowing backward.",
+
+  "Pulmonary Valve":
+  "The pulmonary valve is between the right ventricle and pulmonary artery. It helps prevent blood from flowing back into the ventricle.",
+
+  "Mitral Valve":
+  "The mitral valve is between the left atrium and left ventricle. It helps prevent blood from flowing backward.",
+
+  "Aortic Valve":
+  "The aortic valve is between the left ventricle and aorta. It helps prevent blood from flowing back into the ventricle.",
+
+  "Septum":
+  "The septum is the wall that separates the left and right sides of the heart.",
+
+  "Coronary Arteries":
+  "The coronary arteries supply the heart muscle with oxygen-rich blood and nutrients.",
+
+  "Myocardium":
+  "The myocardium is the muscular layer of the heart wall. Its contractions help pump blood.",
+
+  "Pericardium":
+  "The pericardium is a protective sac surrounding the heart.",
+
+  "Chordae Tendineae":
+  "Chordae tendineae are strong, cord-like structures that connect certain heart valves to papillary muscles.",
+
+  "Papillary Muscles":
+  "Papillary muscles help stabilize the atrioventricular valves during heart contractions."
+};
+
+
+function showInfo(part) {
+
+  document.getElementById("info").innerHTML =
+    "<h3>" + part + "</h3>" +
+    "<p>" + information[part] + "</p>";
+
+}
+
+
+const questions = [
+
+  {
+    question: "Which chamber pumps oxygen-rich blood to the rest of the body?",
+    options: [
+      "Right Atrium",
+      "Right Ventricle",
+      "Left Atrium",
+      "Left Ventricle"
+    ],
+    answer: "Left Ventricle"
+  },
+
+  {
+    question: "Which vessel carries oxygen-poor blood from the heart to the lungs?",
+    options: [
+      "Aorta",
+      "Pulmonary Artery",
+      "Pulmonary Veins",
+      "Superior Vena Cava"
+    ],
+    answer: "Pulmonary Artery"
+  },
+
+  {
+    question: "Which chamber receives oxygen-rich blood from the lungs?",
+    options: [
+      "Right Atrium",
+      "Right Ventricle",
+      "Left Atrium",
+      "Left Ventricle"
+    ],
+    answer: "Left Atrium"
+  },
+
+  {
+    question: "Which structure separates the left and right sides of the heart?",
+    options: [
+      "Septum",
+      "Aorta",
+      "Pericardium",
+      "Mitral Valve"
+    ],
+    answer: "Septum"
+  },
+
+  {
+    question: "Which is the largest artery in the human body?",
+    options: [
+      "Pulmonary Artery",
+      "Aorta",
+      "Superior Vena Cava",
+      "Pulmonary Veins"
+    ],
+    answer: "Aorta"
+  },
+
+  {
+    question: "Which valve is located between the left atrium and left ventricle?",
+    options: [
+      "Tricuspid Valve",
+      "Pulmonary Valve",
+      "Mitral Valve",
+      "Aortic Valve"
+    ],
+    answer: "Mitral Valve"
+  },
+
+  {
+    question: "Which blood vessels supply the heart muscle itself?",
+    options: [
+      "Coronary Arteries",
+      "Pulmonary Veins",
+      "Vena Cavae",
+      "Pulmonary Arteries"
+    ],
+    answer: "Coronary Arteries"
+  },
+
+  {
+    question: "Where does oxygen-poor blood go after leaving the right ventricle?",
+    options: [
+      "The brain",
+      "The lungs",
+      "The left atrium",
+      "The aorta"
+    ],
+    answer: "The lungs"
+  },
+
+  {
+    question: "What is the main muscular layer of the heart wall called?",
+    options: [
+      "Pericardium",
+      "Septum",
+      "Myocardium",
+      "Endocardium"
+    ],
+    answer: "Myocardium"
+  },
+
+  {
+    question: "What is the main function of heart valves?",
+    options: [
+      "Produce oxygen",
+      "Prevent backward blood flow",
+      "Create blood cells",
+      "Remove carbon dioxide"
+    ],
+    answer: "Prevent backward blood flow"
+  }
+
+];
+
+
+let currentQuestion = 0;
+let score = 0;
+
+
+function loadQuestion() {
+
+  const question = questions[currentQuestion];
+
+  document.getElementById("quiz-question").textContent =
+    question.question;
+
+  const options = document.getElementById("quiz-options");
+
+  options.innerHTML = "";
+
+  document.getElementById("feedback").textContent = "";
+
+  question.options.forEach(function(option) {
+
+    const button = document.createElement("button");
+
+    button.textContent = option;
+
+    button.onclick = function() {
+      answerQuestion(option);
+    };
+
+    options.appendChild(button);
+
+  });
+
+  document.getElementById("score").textContent =
+    "Score: " + score + " / " + questions.length;
+
+}
+
+
+function answerQuestion(selected) {
+
+  const question = questions[currentQuestion];
+
+  if (selected === question.answer) {
+
+    score++;
+
+    document.getElementById("feedback").textContent =
+      "✅ Correct!";
+
+  } else {
+
+    document.getElementById("feedback").textContent =
+      "❌ The correct answer is " + question.answer + ".";
+
+  }
+
+  document.getElementById("score").textContent =
+    "Score: " + score + " / " + questions.length;
+
+  setTimeout(function() {
+
+    currentQuestion++;
+
+    if (currentQuestion >= questions.length) {
+
+      document.getElementById("quiz-question").textContent =
+        "🎉 Quiz complete!";
+
+      document.getElementById("quiz-options").innerHTML = "";
+
+      document.getElementById("feedback").textContent =
+        "You scored " + score + " out of " + questions.length + "!";
+
+      document.getElementById("score").innerHTML =
+        "<button onclick='restartQuiz()'>Take Quiz Again</button>";
+
+      return;
+    }
+
+    loadQuestion();
+
+  }, 1300);
+
+}
+
+
+function restartQuiz() {
+
+  currentQuestion = 0;
+  score = 0;
+
+  loadQuestion();
+
+}
+
+
+loadQuestion();
+
+</script>
+
+</body>
+</html>
